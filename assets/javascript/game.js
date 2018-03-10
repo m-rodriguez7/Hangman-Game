@@ -7,11 +7,14 @@ var currentWord;
 var hiddenWord = [];
 var triesLeft = 12
 var lettersGuessed = [];
+Math.floor(Math.random() * words.length); // use this to pick a random word from 'words'
 
-//document.getElementById("right").innerHTML = lettersGuessed;
 
 // NEED TO FIGURE OUT HOW TO DISPLAY JAVASCRIPT STUFF ON THE WEBPAGE (HTML)
 
+
+
+// game functions here
 var addTo = function (array, letter) {
     if (array.includes(letter)) {
         return;
@@ -21,9 +24,24 @@ var addTo = function (array, letter) {
     }
 }
 
-
 // use .push to add to arrays!
+// would need to display all elements before a button press, but use the button press to modify them.
+    // i will leave letterGuessed in the button press code, so it will only show when something has been added to it.     
 
+
+
+
+
+
+
+
+
+
+
+// game display here
 document.onkeyup = function(event) {
     addTo(lettersGuessed, event.key);
+    triesLeft--;
+    document.getElementById("guess").textContent = lettersGuessed;
+    document.getElementById("tries").textContent = triesLeft;
 }
