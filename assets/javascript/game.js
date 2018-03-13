@@ -3,7 +3,7 @@ var words = ['Awkward', 'Bagpipes', 'Banjo', 'Bungler', 'Croquet', 'Crypt', 'Dwa
 'Gypsy', 'Haiku', 'Haphazard', 'Hyphen', 'Ivory', 'Jazzy', 'Jiffy', 'Jinx', 'Jukebox', 'Kayak', 'Kiosk', 'Klutz', 'Memento', 'Mystify', 
 'Numbskull', 'Ostracize', 'Oxygen', 'Pajama', 'Phlegm', 'Pixel', 'Polka', 'Quad', 'Quip', 'Rhythmic', 'Rogue', 'Sphinx', 'Squawk', 
 'Swivel', 'Toady', 'Twelfth', 'Waxy', 'Wildebeest', 'Yacht', 'Zealous', 'Zigzag', 'Zippy', 'Zombie'];
-var currentWord;
+// var currentWord;
 var hiddenWord = [];
 var triesLeft = 12;
 var guesses = [];
@@ -43,7 +43,7 @@ var revealIf = function(key, word, dash) { // would be using event.key in place 
         if (key === word[i]) {
             console.log("key match!");
             dash[i] = key;
-            document.getElementById("randomWord").textContent = guessDash;
+            document.getElementById("randomWord").textContent = dash.join("");
         } 
     console.log("done looking");
     }
@@ -55,7 +55,7 @@ var revealIf = function(key, word, dash) { // would be using event.key in place 
 
 // variables made with functions here
 var guessThis = words[Math.floor(Math.random() * words.length)]; // Math... gives out random whole number between 0 and the length of words used for the hangman game
-var guessDash = makeDash(guessThis);
+var guessDash = makeDash(guessThis); // this creates an ARRAY
 console.log(guessThis + " is the current word");
 
 
@@ -64,7 +64,7 @@ console.log(guessThis + " is the current word");
 // game display here
 
 
-document.getElementById("randomWord").textContent = makeDash(guessThis);
+document.getElementById("randomWord").textContent = makeDash(guessThis).join("");
 document.getElementById("tries").textContent = triesLeft;
 document.getElementById("guess").textContent = guesses;
 
