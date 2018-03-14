@@ -6,7 +6,6 @@ var words = ['Awkward', 'Bagpipes', 'Banjo', 'Bungler', 'Croquet', 'Crypt', 'Dwa
 'Gypsy', 'Haiku', 'Haphazard', 'Hyphen', 'Ivory', 'Jazzy', 'Jiffy', 'Jinx', 'Jukebox', 'Kayak', 'Kiosk', 'Klutz', 'Memento', 'Mystify', 
 'Numbskull', 'Ostracize', 'Oxygen', 'Pajama', 'Phlegm', 'Pixel', 'Polka', 'Quad', 'Quip', 'Rhythmic', 'Rogue', 'Sphinx', 'Squawk', 
 'Swivel', 'Toady', 'Twelfth', 'Waxy', 'Wildebeest', 'Yacht', 'Zealous', 'Zigzag', 'Zippy', 'Zombie'];
-// var currentWord;
 var nonAlphabet = ["control", "shift", "meta", "alt", "enter", "backspace", "escape", "insert", "home", "pageup", "pagedown", "end", "delete", 
 "arrowup", "arrowdown", "arrowleft", "arrowright", "print", "scrolllock", "pause"] // used dev tools to create this list
 var hiddenWord = [];
@@ -60,11 +59,11 @@ console.log(guessThis + " is the current word");
 
 // game display here
 
-document.getElementById("randomWord").textContent = makeDash(guessThis).join("");
-document.getElementById("tries").textContent = "Tries Left: " + triesLeft;
-document.getElementById("guess").textContent = "Letters already guessed: " + guesses;
-document.getElementById("win").textContent = "wins: " + win;
-document.getElementById("loss").textContent = "losses: " + loss;
+document.getElementById("randomWord").textContent = makeDash(guessThis).join(""); // this displays dashes, dashes = length of random word.
+document.getElementById("tries").textContent = "Tries Left: " + triesLeft; // shows player how many chances they have left.
+document.getElementById("guess").textContent = "Letters already guessed: " + guesses; // shows player what they have guessed incorrectly. 
+document.getElementById("win").textContent = "wins: " + win; // win counter
+document.getElementById("loss").textContent = "losses: " + loss; // loss counter
 
 
 
@@ -94,4 +93,35 @@ document.onkeyup = function(event) { // toLowerCase() used throughout to check f
     }
     document.getElementById("guess").textContent = guesses.join(" ");
     }
+    if (triesLeft < 1) { // code that resets game here
+        loss++
+        guessThis = words[Math.floor(Math.random() * words.length)]; // change word for guessing
+        console.log(guessThis + " is the current word");
+        guessDash = makeDash(guessThis); // create new dash array
+        triesLeft = 12;
+        guesses = [];
+        document.getElementById("randomWord").textContent = makeDash(guessThis).join(""); // this displays dashes, dashes = length of random word.
+        document.getElementById("tries").textContent = "Tries Left: " + triesLeft; // shows player how many chances they have left.
+        document.getElementById("guess").textContent = "Letters already guessed: " + guesses; // shows player what they have guessed incorrectly. 
+        document.getElementById("win").textContent = "wins: " + win; // win counter
+        document.getElementById("loss").textContent = "losses: " + loss; // loss counter
+    } else if (!(guessDash.includes("_ "))) { // i inserted spaces in the dash array for display purposes. perhaps i didnt need to but I'd rather leave it working :)
+        win++
+        guessThis = words[Math.floor(Math.random() * words.length)]; // change word for guessing
+        console.log(guessThis + " is the current word");
+        guessDash = makeDash(guessThis); // create new dash array
+        triesLeft = 12;
+        guesses = [];
+        document.getElementById("randomWord").textContent = makeDash(guessThis).join(""); // this displays dashes, dashes = length of random word.
+        document.getElementById("tries").textContent = "Tries Left: " + triesLeft; // shows player how many chances they have left.
+        document.getElementById("guess").textContent = "Letters already guessed: " + guesses; // shows player what they have guessed incorrectly. 
+        document.getElementById("win").textContent = "wins: " + win; // win counter
+        document.getElementById("loss").textContent = "losses: " + loss; // loss counter
+    }
 }
+
+
+// as of now the game works as the spec requests.
+// perhaps display what the previous word was in a loss?
+
+// PERSONA 5 THEME?????
