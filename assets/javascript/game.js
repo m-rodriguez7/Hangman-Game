@@ -1,6 +1,7 @@
 // variables to be used in code
 
-var wins = 0;
+var loss = 0;
+var win = 0;
 var words = ['Awkward', 'Bagpipes', 'Banjo', 'Bungler', 'Croquet', 'Crypt', 'Dwarves', 'Fervid', 'Fishhook', 'Fjord', 'Gazebo', 
 'Gypsy', 'Haiku', 'Haphazard', 'Hyphen', 'Ivory', 'Jazzy', 'Jiffy', 'Jinx', 'Jukebox', 'Kayak', 'Kiosk', 'Klutz', 'Memento', 'Mystify', 
 'Numbskull', 'Ostracize', 'Oxygen', 'Pajama', 'Phlegm', 'Pixel', 'Polka', 'Quad', 'Quip', 'Rhythmic', 'Rogue', 'Sphinx', 'Squawk', 
@@ -60,12 +61,19 @@ console.log(guessThis + " is the current word");
 // game display here
 
 document.getElementById("randomWord").textContent = makeDash(guessThis).join("");
-document.getElementById("tries").textContent = triesLeft;
-document.getElementById("guess").textContent = guesses;
+document.getElementById("tries").textContent = "Tries Left: " + triesLeft;
+document.getElementById("guess").textContent = "Letters already guessed: " + guesses;
+document.getElementById("win").textContent = "wins: " + win;
+document.getElementById("loss").textContent = "losses: " + loss;
+
 
 
 
 // game functions here
+
+// game starts with a key press
+// need a win/loss condition
+// need to pick a new work after win/loss condition
 
 document.onkeyup = function(event) { // toLowerCase() used throughout to check for case-sensitivity
     if (!/^[a-zA-Z]+$/.test(event.key)) {
@@ -82,7 +90,7 @@ document.onkeyup = function(event) { // toLowerCase() used throughout to check f
         addTo(guesses, event.key.toLowerCase());
         console.log("should subtract");
         triesLeft--;
-        document.getElementById("tries").textContent = triesLeft; // need to update triesLeft in the html, or the display on the page never changes
+        document.getElementById("tries").textContent =  "Tries Left: " + triesLeft; // need to update triesLeft in the html, or the display on the page never changes
     }
     document.getElementById("guess").textContent = guesses.join(" ");
     }
