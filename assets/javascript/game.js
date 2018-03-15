@@ -71,8 +71,6 @@ document.getElementById("loss").textContent = "losses: " + loss; // loss counter
 // game functions here
 
 // game starts with a key press
-// need a win/loss condition
-// need to pick a new work after win/loss condition
 
 document.onkeyup = function(event) { // toLowerCase() used throughout to check for case-sensitivity
     if (!/^[a-zA-Z]+$/.test(event.key)) {
@@ -91,10 +89,11 @@ document.onkeyup = function(event) { // toLowerCase() used throughout to check f
         triesLeft--;
         document.getElementById("tries").textContent =  "Tries Left: " + triesLeft; // need to update triesLeft in the html, or the display on the page never changes
     }
-    document.getElementById("guess").textContent = guesses.join(" ");
-    }
-    if (triesLeft < 1) { // code that resets game here
+    document.getElementById("guess").textContent = "Letters already guessed: " + guesses.join(" ");
+    }  // code that resets game here
+    if (triesLeft < 1) {
         loss++
+        document.getElementById("lostWord").textContent = "The word was " + guessThis;
         guessThis = words[Math.floor(Math.random() * words.length)]; // change word for guessing
         console.log(guessThis + " is the current word");
         guessDash = makeDash(guessThis); // create new dash array
