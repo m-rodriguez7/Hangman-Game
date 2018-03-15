@@ -7,7 +7,7 @@ var words = ['Awkward', 'Bagpipes', 'Banjo', 'Bungler', 'Croquet', 'Crypt', 'Dwa
 'Numbskull', 'Ostracize', 'Oxygen', 'Pajama', 'Phlegm', 'Pixel', 'Polka', 'Quad', 'Quip', 'Rhythmic', 'Rogue', 'Sphinx', 'Squawk', 
 'Swivel', 'Toady', 'Twelfth', 'Waxy', 'Wildebeest', 'Yacht', 'Zealous', 'Zigzag', 'Zippy', 'Zombie'];
 var nonAlphabet = ["control", "shift", "meta", "alt", "enter", "backspace", "escape", "insert", "home", "pageup", "pagedown", "end", "delete", 
-"arrowup", "arrowdown", "arrowleft", "arrowright", "print", "scrolllock", "pause"] // used dev tools to create this list
+"arrowup", "arrowdown", "arrowleft", "arrowright", "print", "scrolllock", "pause", "windows", "command"] // used dev tools to create this list
 var hiddenWord = [];
 var triesLeft = 12;
 var guesses = [];
@@ -93,7 +93,7 @@ document.onkeyup = function(event) { // toLowerCase() used throughout to check f
     }  // code that resets game here
     if (triesLeft < 1) {
         loss++
-        document.getElementById("lostWord").textContent = "The word was " + guessThis;
+        document.getElementById("previousWord").textContent = "You lose! The previous word was " + guessThis;
         guessThis = words[Math.floor(Math.random() * words.length)]; // change word for guessing
         console.log(guessThis + " is the current word");
         guessDash = makeDash(guessThis); // create new dash array
@@ -106,6 +106,7 @@ document.onkeyup = function(event) { // toLowerCase() used throughout to check f
         document.getElementById("loss").textContent = "losses: " + loss; // loss counter
     } else if (!(guessDash.includes("_ "))) { // i inserted spaces in the dash array for display purposes. perhaps i didnt need to but I'd rather leave it working :)
         win++
+        document.getElementById("previousWord").textContent = "You win! The previous word was " + guessThis; // the browser changes the word so fast, i thought it would be better to show what the word was!
         guessThis = words[Math.floor(Math.random() * words.length)]; // change word for guessing
         console.log(guessThis + " is the current word");
         guessDash = makeDash(guessThis); // create new dash array
@@ -121,6 +122,5 @@ document.onkeyup = function(event) { // toLowerCase() used throughout to check f
 
 
 // as of now the game works as the spec requests.
-// perhaps display what the previous word was in a loss?
 
 // PERSONA 5 THEME?????
