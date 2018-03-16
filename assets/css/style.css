@@ -1,3 +1,9 @@
+.jumbotron {
+    opacity: 1;
+    background-color:transparent !important; 
+}
 body {
+    color: white;
     text-align: center;
+    background-image: url('../images/p3.jpg');
 }

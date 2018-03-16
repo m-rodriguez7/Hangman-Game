@@ -8,6 +8,14 @@ var words = ['Awkward', 'Bagpipes', 'Banjo', 'Bungler', 'Croquet', 'Crypt', 'Dwa
 'Swivel', 'Toady', 'Twelfth', 'Waxy', 'Wildebeest', 'Yacht', 'Zealous', 'Zigzag', 'Zippy', 'Zombie'];
 var nonAlphabet = ["control", "shift", "meta", "alt", "enter", "backspace", "escape", "insert", "home", "pageup", "pagedown", "end", "delete", 
 "arrowup", "arrowdown", "arrowleft", "arrowright", "print", "scrolllock", "pause", "windows", "command"] // used dev tools to create this list
+words = ['memories', 'persona', 'atlus', 'velvet', 'contract', 'Japan', 'Gekkoukan', 'Yasogami', 'Junes', 'Shujin', 'coffee', 'curry',
+'world', 'mementos', 'heart', 'change', 'fate', 'whims', 'triumph', 'sadness', 'death', 'magician', 'fool', 'jester', 'priestess', 'empress',
+'emperor', 'hierophant', 'lovers', 'chariot', 'justice', 'hermit', 'fortune', 'strength', 'hanged', 'temperance', 'devil', 'tower', 'star', 'moon', 'sun', 
+'judgement', 'aeon', 'world', 'universe', 'social', 'confidant', 'reaper', 'elevator', 'limousine', 'prison', 'joker', 'skull', 'inari', 'panther', 
+'queen', 'noir', 'oracle', 'feline', 'robot', 'bear', 'fate', 'freedom', 'apathy', 'syndrome', 'steak', 'interrogation', 'palace', 'museum', 'bank', 'spaceship', 'casino', 'ship',
+'slash', 'pierce', 'strike', 'mask', 'self', 'dimension', 'burger', 'yawn', 'master', 'maid', 'guinea', 'alcohol', 'medicine', 'weapons', 'skills', 'psychic', 'nuclear'
+] // persona word list
+
 var hiddenWord = [];
 var triesLeft = 12;
 var guesses = [];
@@ -65,6 +73,9 @@ document.getElementById("guess").textContent = "Letters already guessed: " + gue
 document.getElementById("win").textContent = "wins: " + win; // win counter
 document.getElementById("loss").textContent = "losses: " + loss; // loss counter
 
+// backgrounds here
+var bg = ['assets/images/p3.jpg', 'assets/images/p4.jpg', 'assets/images/p5.jpg'] // for some reason, it was starting from the home folder, not the same directory as the js or css file /shrug
+
 
 
 
@@ -92,7 +103,9 @@ document.onkeyup = function(event) { // toLowerCase() used throughout to check f
     document.getElementById("guess").textContent = "Letters already guessed: " + guesses.join(" ");
     }  // code that resets game here
     if (triesLeft < 1) {
-        loss++
+        document.getElementById("background").style.backgroundImage = "url(" + bg[Math.floor(Math.random() * bg.length)] + ")";
+        console.log("did the bg change?");
+        loss++;
         document.getElementById("previousWord").textContent = "You lose! The previous word was " + guessThis;
         guessThis = words[Math.floor(Math.random() * words.length)]; // change word for guessing
         console.log(guessThis + " is the current word");
@@ -105,7 +118,9 @@ document.onkeyup = function(event) { // toLowerCase() used throughout to check f
         document.getElementById("win").textContent = "wins: " + win; // win counter
         document.getElementById("loss").textContent = "losses: " + loss; // loss counter
     } else if (!(guessDash.includes("_ "))) { // i inserted spaces in the dash array for display purposes. perhaps i didnt need to but I'd rather leave it working :)
-        win++
+        document.getElementById("background").style.backgroundImage = "url(" + bg[Math.floor(Math.random() * bg.length)] + ")";
+        console.log("did the bg change?");
+        win++;
         document.getElementById("previousWord").textContent = "You win! The previous word was " + guessThis; // the browser changes the word so fast, i thought it would be better to show what the word was!
         guessThis = words[Math.floor(Math.random() * words.length)]; // change word for guessing
         console.log(guessThis + " is the current word");
@@ -122,5 +137,3 @@ document.onkeyup = function(event) { // toLowerCase() used throughout to check f
 
 
 // as of now the game works as the spec requests.
-
-// PERSONA 5 THEME?????
